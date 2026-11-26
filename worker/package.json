@@ -1,0 +1,16 @@
+{
+  "name": "ctf-cap-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "capjs-core": "0.1.20"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

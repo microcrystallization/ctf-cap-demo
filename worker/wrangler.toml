@@ -1,0 +1,20 @@
+name = "ctf-cap-demo"
+main = "src/index.js"
+compatibility_date = "2025-04-01"
+compatibility_flags = ["nodejs_compat"]
+
+routes = [
+  { pattern = "capcat.wrongaaa.gay", custom_domain = true }
+]
+
+[vars]
+ALLOWED_ORIGIN = "https://microcrystallization.github.io"
+CTF_FLAG = "flag{cap_pow_verified_2026}"
+
+[[durable_objects.bindings]]
+name = "CAP_STORE"
+class_name = "CapStore"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["CapStore"]

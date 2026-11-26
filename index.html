@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CTF Flag Submit · Cap Demo</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/cap-widget@0.1.64"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="card" aria-label="CTF Flag Submission">
+        <header class="header">
+          <div class="badge">CTF · CAP PROTECTED</div>
+          <h1>Flag 提交验证</h1>
+          <p class="subtitle">
+            使用自托管 <strong>Cap</strong>（HashWX PoW + 浏览器插桩）防止脚本爆破提交。
+          </p>
+        </header>
+
+        <form id="flag-form" class="form" novalidate>
+          <div class="field">
+            <label for="flag-input">Flag</label>
+            <input
+              id="flag-input"
+              name="flag"
+              type="text"
+              placeholder="flag{...}"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            />
+          </div>
+
+          <div class="widget-wrap" id="widget-container">
+            <cap-widget id="cap-widget" required></cap-widget>
+          </div>
+
+          <button id="submit-btn" type="submit" disabled>
+            提交 Flag
+          </button>
+        </form>
+
+        <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+
+        <details class="config" id="config-panel">
+          <summary>
+            <span>后端 Worker 配置</span>
+            <span id="conn-dot" class="dot" title="连接状态"></span>
+          </summary>
+          <div class="config-body">
+            <label for="api-input">Cloudflare Worker URL</label>
+            <div class="config-row">
+              <input
+                id="api-input"
+                type="url"
+                placeholder="https://ctf-cap-demo.<your-subdomain>.workers.dev"
+                spellcheck="false"
+              />
+              <button id="save-api-btn" type="button" class="btn-secondary">
+                保存
+              </button>
+            </div>
+            <p class="hint">
+              支持 URL 参数 <code>?api=https://...</code>。部署 <code>worker/</code> 后填入 Worker 域名即可启用真实校验。
+            </p>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
