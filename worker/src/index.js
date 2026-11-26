@@ -33,12 +33,14 @@ export class CapStore extends DurableObject {
     const now = Date.now();
     this.cleanup(now);
     const expires = now + Number(ttlMs || 600_000);
-    const cursor = this.sql.exec(
-      "INSERT OR IGNORE INTO nonces (sig, expires) VALUES (?, ?)",
-      sig,
-      expires,
-    );
-    return cursor.rowsWritten === 1;
+    const rows = this.sql
+      .exec(
+        "INSERT OR IGNORE INTO nonces (sig, expires) VALUES (?, ?) RETURNING sig",
+        sig,
+        expires,
+      )
+      .toArray();
+    return rows.length === 1;
   }
 
   storeToken(tokenKey, expires) {
@@ -179,6 +181,7 @@ export default {
             {
               success: false,
               reason: result.reason,
+              error: result.reason,
               ...(result.instr_error ? { instr_error: true } : {}),
             },
             400,
@@ -197,8 +200,9 @@ export default {
           cors,
         );
       } catch (err) {
+        console.error("redeem error:", err);
         return json(
-          { success: false, reason: "invalid_request" },
+          { success: false, reason: "invalid_request", error: err?.message || "invalid_request" },
           400,
           cors,
         );
