@@ -11,6 +11,10 @@ routes = [
 ALLOWED_ORIGIN = "https://microcrystallization.github.io"
 CTF_FLAG = "flag{cap_pow_verified_2026}"
 
+[alias]
+"esbuild" = "./src/no-esbuild.js"
+"javascript-obfuscator" = "./src/no-esbuild.js"
+
 [[durable_objects.bindings]]
 name = "CAP_STORE"
 class_name = "CapStore"
