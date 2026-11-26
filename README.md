@@ -1,6 +1,6 @@
-# CTF Cap Demo
+# CTF Cap Demo（自部署人机验证能力测试页）
 
-极简 CTF Flag 提交验证 Demo，集成自托管开源验证码 **[Cap](https://trycap.dev)**（HashWX PoW + 浏览器插桩）。
+本仓库为**自主部署的人机验证能力测试环境**（极简 CTF Flag 提交靶场），集成自托管开源验证码 **[Cap](https://trycap.dev)**（HashWX PoW + 浏览器插桩），仅用于测试 Cap 的人机验证与防自动化防护能力。
 
 ## 架构
 
